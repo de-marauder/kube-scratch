@@ -40,7 +40,7 @@ EXPOSE 4201
 ENV BIRD_API_HOST=localhost
 
 # Expose the BIRD_API_HOST_PORT as an environment variable
-ENV BIRD_API_HOST_PORT=4201
+ENV BIRD_API_HOST_PORT=4200
 
 # Command to run the Go binary
 CMD ["/app/server"]

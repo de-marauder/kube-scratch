@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.birdImageApiName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ .Values.birdImageApiName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.birdImageApiName }}
+    spec:
+      containers:
+      - name: {{ .Values.birdImageApiName }}
+        image: demarauder/bird-image:latest
+        ports:
+        - containerPort: 4200
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.birdImageApiName }}-service"
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ .Values.birdImageApiName }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4200
+  type: LoadBalancer
+  
