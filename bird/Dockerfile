@@ -38,6 +38,7 @@ EXPOSE 4201
 
 # Expose the BIRD_API_HOST_NAME as an environment variable
 ENV BIRD_API_HOST=localhost
+
 # Expose the BIRD_API_HOST_PORT as an environment variable
 ENV BIRD_API_HOST_PORT=4201
 
