@@ -1,0 +1,9 @@
+
+
+Thanks for installing the bird API. 
+
+If you're on minikube, run `minikube tunnel`
+
+In a different terminal get the service IPs of the 2 API and send an HTTP request
+kubectl get svc -n api
+curl <external-ip>
