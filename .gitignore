@@ -1,2 +1,9 @@
 bird/getBird
 birdImage/getBirdImage
+
+.terraform*
+.github
+kubeconfig*
+k3s_ssh_key.pem
+terraform.tfstate*
+*.tfvars

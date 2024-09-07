@@ -1,0 +1,94 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingressClassName: external-nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: api-ingress
+  namespace: api
+spec:
+  tls:
+  - hosts:
+    - bird-image.de-marauder.me
+    - bird.de-marauder.me
+    secretName: bird-tls
+  rules:
+  - host: bird.de-marauder.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: vote
+            port: 
+              number: 80
+  - host: bird-image.de-marauder.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: result
+            port: 
+              number: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingressClassName: external-nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: prometheus-ingress
+  namespace: monitoring
+spec:
+  tls:
+  - hosts:
+    - prom.de-marauder.me
+    secretName: prometheus-server-tls
+  rules:
+  - host: prom.de-marauder.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-server
+            port: 
+              number: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingressClassName: external-nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: grafana-ingress
+  namespace: monitoring
+spec:
+  tls:
+  - hosts:
+    - graf.de-marauder.me
+    secretName: grafana-server-tls
+  rules:
+  - host: graf.de-marauder.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: grafana
+            port: 
+              number: 3000
+
