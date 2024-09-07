@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-autoscaler
+  namespace: kube-system
+  labels:
+    app: cluster-autoscaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cluster-autoscaler
+  template:
+    metadata:
+      labels:
+        app: cluster-autoscaler
+    spec:
+      containers:
+      - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.23.0
+        name: cluster-autoscaler
+        command:
+          - ./cluster-autoscaler
+          - --cloud-provider=aws
+          - --auto-discover-node-group-tag=k8s.io/cluster-autoscaler/enabled
+          - --nodes=1:5:<asg-name>
+          - --skip-nodes-with-local-storage=false
+          - --balance-similar-node-groups
+        env:
+          - name: AWS_REGION
+            value: <your-region>
+        resources:
+          limits:
+            cpu: 100m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
