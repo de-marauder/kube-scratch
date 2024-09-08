@@ -1,5 +1,5 @@
 module "kube" {
-  source = "./kube"
+  source = "./modules/kube-cluster"
 
   region              = var.region
   cluster_name        = var.cluster_name

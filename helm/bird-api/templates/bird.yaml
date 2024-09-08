@@ -18,7 +18,7 @@ spec:
         image: demarauder/bird:latest
         env:
           - name: BIRD_API_HOST
-            value: bird-image-service
+            value: {{ .Values.birdImageApiName }}-service
           - name: BIRD_API_HOST_PORT
             value: "80"
         ports:
