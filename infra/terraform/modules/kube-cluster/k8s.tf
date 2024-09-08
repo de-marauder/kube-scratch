@@ -1,5 +1,5 @@
 module "manifests" {
-  source = "../manifests"
+  source = "../k8s-manifests"
 
   email        = var.email
   domain_name  = var.domain_name
