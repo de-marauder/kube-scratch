@@ -1,5 +1,5 @@
-# Create a Kubernetes Cluster with kubeadm and terraform on AWS
-This repo contains terraform code required to spin up resources required to run your own kubernetes cluster using k3s. All nodes run ubuntu OS and are of type t3.medium by default.
+# Create a Kubernetes Cluster with k3s and terraform on AWS
+This directory contains terraform code required to spin up resources required to run your own kubernetes cluster using k3s. All nodes run ubuntu OS and are of type t3.medium by default.
 
 ## Requirements
 - terraform
