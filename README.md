@@ -1,3 +1,7 @@
+# Kube-Scratch
+
+This repository describes a lean approach to setting up a multi node kubernetes cluster on AWS using k3s. It consists of the `terraform` code to deploy the infrastructure (kube cluster), two golang microservices (a bird application) and a helm chart to deploy them.
+
 # Bird Application
 
 This is the bird Application! It gives us birds!!!
@@ -6,9 +10,7 @@ The app is written in Golang and contains 2 APIs:
 - the bird API
 - the birdImage API
 
-When you run the application (figure it out), you will see the relationship between those 2 APIs.
-
-# installation & how to run it
+# Installation & how to run it
 
 - In each of the API directories, there's a makefile. Run `make` in each directory to install dependencies and build the go binary and run the output binaries
   ```
@@ -30,13 +32,7 @@ When you run the application (figure it out), you will see the relationship betw
 
 # Challenge
 
-### How to:
-- [x] fork the repository
-- [x] work on the challenges
-- [x] share your repository link with the recruitment team
-
-### Here are the challenges:
-- [x] Install and run the app
+- [x] Setup microservices
 - [x] Dockerize it (create dockerfile for each API)
 - [x] Create an infra on AWS (VPC, SG, instances) using IaC
   > - Made use of core AWS infrastructure: EC2, Auto Scaling Groups (ASG) and launch templates, and Application load balancer (ALB) to build out the functionality of the nodes
@@ -56,16 +52,11 @@ When you run the application (figure it out), you will see the relationship betw
   >    - grafana
   >    - cert-manager
 
-### Rules:
+### Extras:
 - Use security / container / k8s / cloud best practices
   > Made use of private subnets and security groups to lock down access to the cluster
 - Change in the source code is possible
   > Update the bird API to accept the hostname and port number of the bird-image api as environment variables 
-
-### Evaluation criterias:
-- best practices
-- code organization
-- clarity & readability
 
 For more information on the infrastructure please visit [here](./infra/README.md)
 
